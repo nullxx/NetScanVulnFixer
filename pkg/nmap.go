@@ -67,8 +67,16 @@ func Cmd(cmd string, shell bool) ([]byte, error) {
 	return exec.Command(cmd).Output()
 }
 
+func locateNmap() (string, error) {
+	return exec.LookPath("nmap")
+}
+
 func GetHostPortService(host nmap.Host, port uint32) Service {
-	cmdStr := fmt.Sprintf("/opt/homebrew/bin/nmap -oX - -sV -p %d %s", port, host.Address)
+	nmapBinPath, err := locateNmap()
+	if err != nil {
+		panic(err)
+	}
+	cmdStr := fmt.Sprintf("%s -oX - -sV -p %d %s", nmapBinPath, port, host.Address)
 
 	xmlBytes, err := Cmd(cmdStr, true)
 	if err != nil {

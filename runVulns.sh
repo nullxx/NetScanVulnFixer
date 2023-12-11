@@ -3,7 +3,7 @@
 # tomcat
 # cd dockerfiles/tomcat
 # docker build -t vuln-apache-tomcat-7.0.0 -f apache-tomcat-7.0.0.dockerfile --progress plain .
-TOMCAT=$(docker run -d -p8080:8080 vuln-apache-tomcat-7.0.0)
+TOMCAT=$(docker run -d -p8080:8080 -p 4444:4444 vuln-apache-tomcat-7.0.0)
 
 # php
 
